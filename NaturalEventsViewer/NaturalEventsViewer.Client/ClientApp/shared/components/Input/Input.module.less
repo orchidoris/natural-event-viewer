@@ -1,0 +1,35 @@
+.container {
+    padding-left: 8px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+
+    &[type='date']::-webkit-inner-spin-button,
+    &[type='date']::-webkit-clear-button {
+        display: none;
+    }
+
+    &::placeholder {
+        color: #999999;
+    }
+
+    &.invalid {
+        outline: none;
+        border: 1px solid #ff6464;
+
+        &:focus {
+            border: 1px solid #ff6464;
+            box-shadow: 0 2px 4px 0 rgba(216, 61, 61, 0.24);
+        }
+    }
+
+    &:focus {
+        border: 1px solid #39a1bc;
+        box-shadow: 0 2px 4px 0 rgba(18, 122, 149, 0.24);
+    }
+}
+
+.small {
+    height: 32px;
+}

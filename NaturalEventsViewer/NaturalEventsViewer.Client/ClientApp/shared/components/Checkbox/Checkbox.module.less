@@ -1,0 +1,58 @@
+.container {
+    color: black;
+}
+
+.input {
+    position: absolute;
+    opacity: 0;
+
+    & + span {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    & + span:before {
+        content: '';
+        display: inline-block;
+        vertical-align: text-top;
+        margin: -1px 8px 0 0;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        background: white;
+    }
+
+    &:hover + span:before {
+        border: 1px solid #39a1bc;
+    }
+
+    &:checked + span:before {
+        border: none;
+        background: #52bad5;
+    }
+
+    &:disabled + span {
+        color: #999999;
+        cursor: auto;
+    }
+
+    &:disabled + span:before {
+        box-shadow: none;
+        border: 1px solid #e6e6e6;
+        background: #ffffff;
+    }
+
+    &:checked + span:after {
+        content: '';
+        position: absolute;
+        left: 3.5px;
+        top: 6px;
+        background: white;
+        width: 2px;
+        height: 2px;
+        box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -7px 0 white;
+        transform: rotate(45deg);
+    }
+}

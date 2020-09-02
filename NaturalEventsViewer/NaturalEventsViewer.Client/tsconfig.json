@@ -1,0 +1,24 @@
+﻿{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "ClientApp",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "target": "es5",
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "skipDefaultLibCheck": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "lib": ["es6", "dom"],
+        "paths": {
+            "react": ["node_modules/@types/react"],
+            "uuid-v4": ["ClientApp/typings/uuid-v4"]
+        }
+    },
+    "compileOnSave": true,
+    "exclude": ["bin", "node_modules", "ClientApp/**/*.test.tsx", "ClientApp/**/*.test.ts", "ClientApp/**/pact/*.ts"]
+}

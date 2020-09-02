@@ -1,0 +1,65 @@
+﻿/*
+    For styling use CSS Modules pattern.
+    Read these articles before writing styles.
+    https://glenmaddern.com/articles/css-modules
+    https://github.com/css-modules/css-modules
+*/
+
+:global(body) {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: white;
+}
+
+:global(body),
+:global(input),
+:global(select),
+:global(textarea) {
+    font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    outline: none;
+}
+
+:global(html) {
+    box-sizing: border-box;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+    box-sizing: inherit;
+}
+
+:global(#react-app) {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Custom scrollbar */
+:global(*)::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 3px;
+}
+
+/* Track */
+:global(*)::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+:global(*)::-webkit-scrollbar-thumb {
+    background: #cccccc;
+}
+
+/* Handle on hover */
+:global(*)::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.pointer {
+    cursor: pointer;
+}

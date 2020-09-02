@@ -1,0 +1,12 @@
+﻿.container {
+    position: relative;
+    height: 100%;
+    padding-left: 56px;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}

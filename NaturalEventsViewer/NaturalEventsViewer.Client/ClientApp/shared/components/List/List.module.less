@@ -1,0 +1,32 @@
+.container {
+    padding: 16px;
+    list-style-type: none;
+    overflow-y: scroll;
+
+    .label {
+        display: block;
+        padding-left: 16px;
+        font-size: 11px;
+        color: #999999;
+        margin-bottom: 8px;
+    }
+
+    .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .item {
+            display: flex;
+
+            background: #ffffff;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08), 0px 0px 1px rgba(0, 0, 0, 0.24);
+            border-radius: 4px;
+            margin-bottom: 8px;
+
+            &:hover {
+                box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.16), 0px 0px 1px rgba(0, 0, 0, 0.24);
+            }
+        }
+    }
+}

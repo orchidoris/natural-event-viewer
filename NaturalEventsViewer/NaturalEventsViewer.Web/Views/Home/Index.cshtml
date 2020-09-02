@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="react-app">Loading...</div>
+
+@section scripts {
+    <script>
+        window.initialState = @Html.Raw(Model);
+    </script>
+    <script src="./dist/main-client.js?v=@ViewBag.Version"></script>
+}
