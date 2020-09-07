@@ -1,6 +1,6 @@
 ﻿namespace Eonet.Core.Models
 {
-    public class EonetEventsApiRequest
+    public class EonetEventsRequest
     {
         /// <summary>
         /// Limits the number of events returned
@@ -12,12 +12,13 @@
         /// Limit the number of prior days (including today) from which events will be returned.
         /// Example: https://eonet.sci.gsfc.nasa.gov/api/v2.1/events ?days=20
         /// </summary>
-        public int? Days { get; set; }
+        public int Days { get; set; }
 
         /// <summary>
         /// Filter the returned events by the Source.
         /// Multiple sources can be included in the parameter: comma separated, operates as a boolean OR.
         /// Example: https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?source=InciWeb,EO
+        /// Sources filter has been moved to Domain level to improve performance thanks to caching
         /// </summary>
         public string[] Sources { get; set; } = new string[0];
 

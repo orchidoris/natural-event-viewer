@@ -10,10 +10,12 @@ namespace NaturalEventsViewer.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IEonetRepository _eonetRepository;
+        private readonly int _maxDaysPrior;
 
-        public HomeController(IEonetRepository eonetRepository)
+        public HomeController(IEonetRepository eonetRepository, int maxDaysPrior)
         {
             _eonetRepository = eonetRepository;
+            _maxDaysPrior = maxDaysPrior;
         }
 
         public async Task<ActionResult> Index()
@@ -30,7 +32,8 @@ namespace NaturalEventsViewer.Web.Controllers
                 Global = new ReduxGlobalState
                 {
                     Sources = await _eonetRepository.GetCurrentlyAvailableSourceIds(),
-                    Categories = await _eonetRepository.GetCurrentlyAvailableCategories()
+                    Categories = await _eonetRepository.GetCurrentlyAvailableCategories(),
+                    MaxDaysPrior = 60 //_maxDaysPrior,
                 }
             };
 

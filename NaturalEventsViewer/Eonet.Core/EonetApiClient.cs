@@ -15,18 +15,30 @@ namespace Eonet.Core
     public class EonetApiClient : IEonetApiClient
     {
         private IEonetHttpClientFactory _clientFactory;
+        private IEonetMemoryCache<EonetEventsResponse> _cache;
 
-        public EonetApiClient(IEonetHttpClientFactory clientFactory) {
+        public EonetApiClient(IEonetHttpClientFactory clientFactory, IEonetMemoryCache<EonetEventsResponse> cache) {
             if (clientFactory == null) throw new ArgumentNullException("Client factory has not bee passed");
 
             _clientFactory = clientFactory;
+            _cache = cache;
         }
 
-        public async Task<EonetEventsResponse> GetEventsAsync(EonetEventsApiRequest request = null)
+        public async Task<EonetEventsResponse> GetEventsAsync(EonetEventsRequest request = null)
         {
-            int retryMaxConut = 5;
+            string eventsGetRequestPath = GetEventsRequestPath(request);
+            EonetEventsResponse eventsResponse = await _cache.GetOrCreate(
+                eventsGetRequestPath,
+                async () => await GetEventsFromApiAsync(eventsGetRequestPath));
 
-            for (int retryCount = 0; retryCount <= retryMaxConut; retryCount++)
+            return eventsResponse;
+        }
+
+        private async Task<EonetEventsResponse> GetEventsFromApiAsync(string eventsGetRequestPath)
+        {
+            int retryMaxNum = 5;
+
+            for (int retryNum = 0; retryNum <= retryMaxNum; retryNum++)
             {
 
                 try
@@ -35,7 +47,6 @@ namespace Eonet.Core
                     {
                         EonetEventsResponse eventsResponse = null;
 
-                        string eventsGetRequestPath = GetEventsRequestPath(request);
                         var eonetJsonFormatters = new[] { GetEonetJsonMediaTypeFormatter() };
 
                         HttpResponseMessage response = await client.GetAsync(eventsGetRequestPath);
@@ -49,20 +60,20 @@ namespace Eonet.Core
                 }
                 catch (Exception e)
                 {
-                    if (retryCount == retryMaxConut)
+                    if (retryNum >= retryMaxNum)
                     {
                         // TODO: Log exception
                         throw;
                     }
                     else
                     {
-                        Thread.Sleep(1000); // Dummy retry logic to cope with random failure issue
+                        Thread.Sleep(1000); // Dummy retry logic to reduce random failure issue impact
                         continue;
-                    }                    
+                    }
                 }
             }
 
-            throw new Exception("Reached max retry count");
+            throw new Exception("Reached max retries number");
         }
 
         private MediaTypeFormatter GetEonetJsonMediaTypeFormatter()
@@ -79,15 +90,14 @@ namespace Eonet.Core
             return jsonFormatter;
         }
 
-        private string GetEventsRequestPath(EonetEventsApiRequest request)
+        private string GetEventsRequestPath(EonetEventsRequest request)
         {
             if (request == null)
             {
-                request = new EonetEventsApiRequest();
+                request = new EonetEventsRequest();
             }
 
-            var days = request.Days ?? 180; // TODO: Consider moving value 180 into app.config
-            string requestString = $"events?days={days}&";
+            string requestString = $"events?days={request.Days}&";
 
             if (request.Limit.HasValue)
             {

@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { GlobalState } from '../models/GlobalState';
 import { GlobalStateActions, RECEIVE_SOURCES, RECEIVE_CATEGORIES, ReceiveSources, ReceiveCategories } from '../actions/globalStateActions';
 
-const initialState = { sources: [], categories: [] };
+const initialState = { sources: [], categories: [], maxDaysPrior: 180 };
 
 const reducer: Reducer<GlobalState> = (state: GlobalState = initialState, action: /*GlobalStateActions*/ any) => {
     switch (action.type) {

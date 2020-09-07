@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentTimeProvider.cs" />
     <Compile Include="EonetRepository.cs" />
+    <Compile Include="ICurrentTimeProvider.cs" />
     <Compile Include="IEonetRepository.cs" />
-    <Compile Include="Models\EonetEventCustomFilterType.cs" />
-    <Compile Include="Models\EonetEventFilter.cs" />
-    <Compile Include="Models\EonetEventOrderAttribute.cs" />
-    <Compile Include="Models\EonetEventsCustomRequest.cs" />
-    <Compile Include="Models\EonetEventOrderAttributeType.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventCustomFilterType.cs" />
+    <Compile Include="Models\EventFilter.cs" />
+    <Compile Include="Models\EventOrderAttribute.cs" />
+    <Compile Include="Models\EventsRequest.cs" />
+    <Compile Include="Models\EventOrderAttributeType.cs" />
+    <Compile Include="Models\EventsResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

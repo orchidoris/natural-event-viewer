@@ -7,12 +7,12 @@ const initialState: EonetEvent = {
     title: 'Loading...',
     description: null,
     link: 'https://eonet.sci.gsfc.nasa.gov/',
-    closed: null,
-    categories: [ { id: 'Category Id', title: 'Loading...'} ],
+    closedDate: null,
+    category: { id: 'Category Id', title: 'Loading...'},
     sources: [ { id: 'SRC', url: 'https://eonet.sci.gsfc.nasa.gov/'} ],
     geometry: [ { date:'2020-01-01', type: EonetGeometryType.Point, coordinates: [0, 0] } as EonetGeometryPoint ],
     status: EonetEventStatus.Open,
-    lastGeometryDate: 'Unknown'
+    lastDate: '2000-01-01'
 };
 
 const notFoundState: EonetEvent = {
@@ -20,12 +20,12 @@ const notFoundState: EonetEvent = {
     title: 'Not Found',
     description: null,
     link: 'https://eonet.sci.gsfc.nasa.gov/',
-    closed: null,
-    categories: [ { id: 'Category Id', title: 'Not Found'} ],
+    closedDate: null,
+    category: { id: 'Category Id', title: 'Not Found'},
     sources: [ { id: 'SRC', url: 'https://eonet.sci.gsfc.nasa.gov/'} ],
     geometry: [ { date:'2020-01-01', type: EonetGeometryType.Point, coordinates: [0, 0] } as EonetGeometryPoint ],
     status: EonetEventStatus.Open,
-    lastGeometryDate: 'Unknown'
+    lastDate: '2000-01-01'
 };
 
 const reducer: Reducer<EonetEvent, EventActions> = (state: EonetEvent = initialState, action: EventActions) => {

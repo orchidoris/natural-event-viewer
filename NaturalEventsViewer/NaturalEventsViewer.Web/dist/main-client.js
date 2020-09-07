@@ -86,218 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./ClientApp/EventListScreen/components/EventListScreen/EventListMapScreen.tsx":
-/*!*************************************************************************************!*\
-  !*** ./ClientApp/EventListScreen/components/EventListScreen/EventListMapScreen.tsx ***!
-  \*************************************************************************************/
-/*! exports provided: default, EventListMapScreen */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventListMapScreen", function() { return EventListMapScreen; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _shared_staticData_sources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../shared/staticData/sources */ "./ClientApp/shared/staticData/sources.ts");
-/* harmony import */ var _eventListActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../eventListActions */ "./ClientApp/EventListScreen/eventListActions.ts");
-/* harmony import */ var _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventListScreen.module.less */ "./ClientApp/EventListScreen/components/EventListScreen/EventListScreen.module.less");
-/* harmony import */ var _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../shared/models/EonetEvent */ "./ClientApp/shared/models/EonetEvent.ts");
-/* harmony import */ var _shared_components_LeftPanel_LeftPanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../shared/components/LeftPanel/LeftPanel */ "./ClientApp/shared/components/LeftPanel/LeftPanel.tsx");
-/* harmony import */ var _shared_components_Button_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../shared/components/Button/Button */ "./ClientApp/shared/components/Button/Button.tsx");
-/* harmony import */ var _shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../shared/components/Checkbox/Checkbox */ "./ClientApp/shared/components/Checkbox/Checkbox.tsx");
-/* harmony import */ var _shared_components_SearchInput_SearchInput__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../shared/components/SearchInput/SearchInput */ "./ClientApp/shared/components/SearchInput/SearchInput.tsx");
-/* harmony import */ var _shared_components_Input_Input__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../shared/components/Input/Input */ "./ClientApp/shared/components/Input/Input.tsx");
-/* harmony import */ var react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-custom-scrollbars */ "./node_modules/react-custom-scrollbars/lib/index.js");
-/* harmony import */ var react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _shared_components_Map_Map__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../shared/components/Map/Map */ "./ClientApp/shared/components/Map/Map.tsx");
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var mapStateToProps = function (state) { return ({
-    eventListScreenState: state.eventListScreen,
-    allSources: state.global.sources,
-    allCategories: state.global.categories
-}); };
-var mapDispatchToProps = function (dispatch) {
-    return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-        fetchEventListEffect: _eventListActions__WEBPACK_IMPORTED_MODULE_5__["fetchEventListEffect"]
-    }, dispatch);
-};
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(EventListMapScreen)));
-function EventListMapScreen(p) {
-    var maxDaysPriorFilterValue = 180; // TODO: pass this value into global state from backend instead of hardcoding it
-    var eventsResponse = p.eventListScreenState.eventsResponse;
-    var sourceNameDictionary = Object.assign.apply(Object, __spreadArrays([{}], _shared_staticData_sources__WEBPACK_IMPORTED_MODULE_4__["SourcesStaticData"].sources.map(function (s) {
-        var _a;
-        return (_a = {}, _a[s.id] = s.title, _a);
-    })));
-    var _a = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(p.eventListScreenState.filters), filters = _a[0], setFilters = _a[1];
-    var _b = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(filters.titleSearch), search = _b[0], setSearch = _b[1];
-    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-        if (eventsResponse.title == 'Initial') {
-            p.fetchEventListEffect({}, filters);
-        }
-    }, []);
-    function manageFiltersStatuses(status) {
-        var newStatuses = __spreadArrays(filters.statuses);
-        if (newStatuses.includes(status)) {
-            newStatuses.splice(newStatuses.indexOf(status), 1);
-        }
-        else {
-            newStatuses = __spreadArrays(newStatuses, [status]);
-        }
-        return setFilters(__assign(__assign({}, filters), { statuses: newStatuses }));
-    }
-    function manageFiltersSource(source) {
-        var newSources = __spreadArrays(filters.sources);
-        if (newSources.includes(source)) {
-            newSources.splice(newSources.indexOf(source), 1);
-        }
-        else {
-            newSources = __spreadArrays(newSources, [source]);
-        }
-        return setFilters(__assign(__assign({}, filters), { sources: newSources }));
-    }
-    function manageFiltersCategories(category) {
-        var newCategories = __spreadArrays(filters.categories);
-        if (newCategories.includes(category)) {
-            newCategories.splice(newCategories.indexOf(category), 1);
-        }
-        else {
-            newCategories = __spreadArrays(newCategories, [category]);
-        }
-        return setFilters(__assign(__assign({}, filters), { categories: newCategories }));
-    }
-    function manageOrderAttributes(attributeType) {
-        var newOrder = __spreadArrays(filters.order);
-        if (newOrder.includes(attributeType)) {
-            newOrder.splice(newOrder.indexOf(attributeType), 1);
-        }
-        else {
-            newOrder = __spreadArrays(newOrder, [attributeType]);
-        }
-        return setFilters(__assign(__assign({}, filters), { order: newOrder }));
-    }
-    function manageOrderAttributesDirection(attributeType) {
-        var newAttrDirection = __spreadArrays(filters.orderAttributesDirection).map(function (ad) { return ({
-            attributeType: ad.attributeType,
-            isDescending: ad.attributeType == attributeType ? !ad.isDescending : !!ad.isDescending
-        }); });
-        return setFilters(__assign(__assign({}, filters), { orderAttributesDirection: newAttrDirection }));
-    }
-    function manageDaysPrior(e) {
-        var value = e.target.value;
-        var newDaysPrior = parseInt(value) || 1;
-        // TODO: Add warning pop-up for value overflow case
-        newDaysPrior = (newDaysPrior > maxDaysPriorFilterValue || newDaysPrior < 1) ? maxDaysPriorFilterValue : newDaysPrior;
-        if (value !== '' && value !== newDaysPrior.toString()) {
-            e.target.value = String(newDaysPrior);
-        }
-        return setFilters(__assign(__assign({}, filters), { daysPrior: newDaysPrior }));
-    }
-    ;
-    function onRequest() {
-        var request = {
-            days: filters.daysPrior,
-            sources: filters.sources,
-            status: filters.statuses.length == 1 ? filters.statuses[0] : null,
-            categories: filters.categories.map(function (c) { return c.id; }),
-            titleSearch: search,
-            ordering: filters.order.map(function (attrType) { return ({
-                attributeType: attrType,
-                isDescending: filters.orderAttributesDirection.some(function (oa) { return oa.attributeType === attrType && oa.isDescending; })
-            }); })
-        };
-        p.fetchEventListEffect(request, filters);
-    }
-    function getCategoryIconImgClass(categoryId) {
-        switch (categoryId) {
-            case 'volcanoes': return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["volcanoesCategoryImg"];
-            case 'landslides': return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["landslidesCategoryImg"];
-            case 'severeStorms': return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["severeStormsCategoryImg"];
-            case 'wildfires': return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["wildfiresCategoryImg"];
-            case 'seaLakeIce': return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["waterIceCategoryImg"];
-        }
-        return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["defaultCategoryImg"];
-    }
-    var mapPoints = eventsResponse.events.filter(function (ee) { return ee.geometry[0].type == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetGeometryType"].Point; }).map(function (ee) {
-        var geometryPoint = ee.geometry[0];
-        return {
-            lat: geometryPoint === null || geometryPoint === void 0 ? void 0 : geometryPoint.coordinates[1],
-            lng: geometryPoint === null || geometryPoint === void 0 ? void 0 : geometryPoint.coordinates[0],
-            id: ee.id,
-            isClosed: ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Closed,
-            categoryClass: getCategoryIconImgClass(ee.categories[0].id),
-            text: ee.title,
-            categoryId: ee.categories[0].id
-        };
-    });
-    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["container"] },
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_LeftPanel_LeftPanel__WEBPACK_IMPORTED_MODULE_8__["default"], null,
-            " ",
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_13___default.a, null,
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_SearchInput_SearchInput__WEBPACK_IMPORTED_MODULE_11__["SearchInput"], { onChange: setSearch, defaultValue: filters.titleSearch, placeholder: "Search by name" }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] + ' ' + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["daysPriorLabel"] }, "Days prior:"),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Input_Input__WEBPACK_IMPORTED_MODULE_12__["default"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["daysPriorInput"], type: "number", name: "days-prior", min: 1, max: maxDaysPriorFilterValue, onChange: manageDaysPrior, value: filters.daysPrior }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by status:"),
-                Object.values(_shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"]).map(function (c) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeTextTwoColumns"], key: c, title: c },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_10__["default"], { checked: filters.statuses.includes(c), label: c, onChange: function () { return manageFiltersStatuses(c); } }))); }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by category:"),
-                p.allCategories.map(function (c) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeText"], key: c.id, title: c.title },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_10__["default"], { checked: filters.categories.includes(c), label: c.title, onChange: function () { return manageFiltersCategories(c); } }))); }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by source:"),
-                p.allSources.map(function (s) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeTextTwoColumns"], key: s, title: sourceNameDictionary[s] },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_10__["default"], { checked: filters.sources.includes(s), label: s, onChange: function () { return manageFiltersSource(s); } }))); }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Button_Button__WEBPACK_IMPORTED_MODULE_9__["default"], { isPrimary: true, onClick: onRequest }, "Request Natural Events")),
-            " "),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["screen"] },
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["header"] },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["eventViewerText"] + " " + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["headerText"] }, "Earth Observatory Natural Events Tracker"),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["rectangle"] }),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["headerText"] }, "Events List"))),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["list"] }, mapPoints && mapPoints.length > 0 ?
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Map_Map__WEBPACK_IMPORTED_MODULE_14__["default"], { zoom: 1, points: mapPoints }) : ''))));
-}
-
-
-/***/ }),
-
 /***/ "./ClientApp/EventListScreen/components/EventListScreen/EventListScreen.module.less":
 /*!******************************************************************************************!*\
   !*** ./ClientApp/EventListScreen/components/EventListScreen/EventListScreen.module.less ***!
@@ -332,11 +120,12 @@ if(false) {}
 /*!**********************************************************************************!*\
   !*** ./ClientApp/EventListScreen/components/EventListScreen/EventListScreen.tsx ***!
   \**********************************************************************************/
-/*! exports provided: default, EventListScreen */
+/*! exports provided: EventScreenListMode, default, EventListScreen */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventScreenListMode", function() { return EventScreenListMode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventListScreen", function() { return EventListScreen; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -358,6 +147,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_components_Input_Input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../shared/components/Input/Input */ "./ClientApp/shared/components/Input/Input.tsx");
 /* harmony import */ var react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-custom-scrollbars */ "./node_modules/react-custom-scrollbars/lib/index.js");
 /* harmony import */ var react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _shared_components_Map_Map__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../shared/components/Map/Map */ "./ClientApp/shared/components/Map/Map.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -394,30 +184,36 @@ var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
 
 
 
+
 var mapStateToProps = function (state) { return ({
     eventListScreenState: state.eventListScreen,
     allSources: state.global.sources,
-    allCategories: state.global.categories
+    allCategories: state.global.categories,
+    maxDaysPrior: state.global.maxDaysPrior
 }); };
 var mapDispatchToProps = function (dispatch) {
     return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-        fetchEventListEffect: _eventListActions__WEBPACK_IMPORTED_MODULE_5__["fetchEventListEffect"]
+        fetchEventListEffect: _eventListActions__WEBPACK_IMPORTED_MODULE_5__["fetchEventListEffect"],
+        updateFiltersEffect: _eventListActions__WEBPACK_IMPORTED_MODULE_5__["updateFiltersEffect"]
     }, dispatch);
 };
+var EventScreenListMode;
+(function (EventScreenListMode) {
+    EventScreenListMode["List"] = "list";
+    EventScreenListMode["Map"] = "map";
+})(EventScreenListMode || (EventScreenListMode = {}));
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(EventListScreen)));
+;
 function EventListScreen(p) {
-    var maxDaysPriorFilterValue = 180; // TODO: pass this value into global state from backend instead of hardcoding it
+    var maxDaysPrior = p.maxDaysPrior;
     var eventsResponse = p.eventListScreenState.eventsResponse;
     var sourceNameDictionary = Object.assign.apply(Object, __spreadArrays([{}], _shared_staticData_sources__WEBPACK_IMPORTED_MODULE_4__["SourcesStaticData"].sources.map(function (s) {
         var _a;
         return (_a = {}, _a[s.id] = s.title, _a);
     })));
-    var _a = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(p.eventListScreenState.filters), filters = _a[0], setFilters = _a[1];
-    var _b = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(filters.titleSearch), search = _b[0], setSearch = _b[1];
+    var filters = p.eventListScreenState.filters;
     Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-        if (eventsResponse.title == 'Initial') {
-            p.fetchEventListEffect({}, filters);
-        }
+        onRequest();
     }, []);
     function manageFiltersStatuses(status) {
         var newStatuses = __spreadArrays(filters.statuses);
@@ -427,7 +223,7 @@ function EventListScreen(p) {
         else {
             newStatuses = __spreadArrays(newStatuses, [status]);
         }
-        return setFilters(__assign(__assign({}, filters), { statuses: newStatuses }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { statuses: newStatuses }));
     }
     function manageFiltersSource(source) {
         var newSources = __spreadArrays(filters.sources);
@@ -437,17 +233,17 @@ function EventListScreen(p) {
         else {
             newSources = __spreadArrays(newSources, [source]);
         }
-        return setFilters(__assign(__assign({}, filters), { sources: newSources }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { sources: newSources }));
     }
-    function manageFiltersCategories(category) {
+    function manageFiltersCategories(categoryId) {
         var newCategories = __spreadArrays(filters.categories);
-        if (newCategories.includes(category)) {
-            newCategories.splice(newCategories.indexOf(category), 1);
+        if (newCategories.includes(categoryId)) {
+            newCategories.splice(newCategories.indexOf(categoryId), 1);
         }
         else {
-            newCategories = __spreadArrays(newCategories, [category]);
+            newCategories = __spreadArrays(newCategories, [categoryId]);
         }
-        return setFilters(__assign(__assign({}, filters), { categories: newCategories }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { categories: newCategories }));
     }
     function manageOrderAttributes(attributeType) {
         var newOrder = __spreadArrays(filters.order);
@@ -457,39 +253,35 @@ function EventListScreen(p) {
         else {
             newOrder = __spreadArrays(newOrder, [attributeType]);
         }
-        return setFilters(__assign(__assign({}, filters), { order: newOrder }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { order: newOrder }));
     }
     function manageOrderAttributesDirection(attributeType) {
         var newAttrDirection = __spreadArrays(filters.orderAttributesDirection).map(function (ad) { return ({
             attributeType: ad.attributeType,
             isDescending: ad.attributeType == attributeType ? !ad.isDescending : !!ad.isDescending
         }); });
-        return setFilters(__assign(__assign({}, filters), { orderAttributesDirection: newAttrDirection }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { orderAttributesDirection: newAttrDirection }));
     }
     function manageDaysPrior(e) {
         var value = e.target.value;
         var newDaysPrior = parseInt(value) || 1;
         // TODO: Add warning pop-up for value overflow case
-        newDaysPrior = (newDaysPrior > maxDaysPriorFilterValue || newDaysPrior < 1) ? maxDaysPriorFilterValue : newDaysPrior;
+        newDaysPrior = (newDaysPrior > maxDaysPrior || newDaysPrior < 1) ? maxDaysPrior : newDaysPrior;
         if (value !== '' && value !== newDaysPrior.toString()) {
             e.target.value = String(newDaysPrior);
         }
-        return setFilters(__assign(__assign({}, filters), { daysPrior: newDaysPrior }));
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { daysPrior: newDaysPrior }));
     }
     ;
+    function manageTitleSearch(newValue) {
+        var newTitleSearchValue = (newValue || '').trim();
+        return p.updateFiltersEffect(__assign(__assign({}, filters), { titleSearch: newTitleSearchValue }));
+    }
     function onRequest() {
-        var request = {
-            days: filters.daysPrior,
-            sources: filters.sources,
-            status: filters.statuses.length == 1 ? filters.statuses[0] : null,
-            categories: filters.categories.map(function (c) { return c.id; }),
-            titleSearch: search,
-            ordering: filters.order.map(function (attrType) { return ({
-                attributeType: attrType,
-                isDescending: filters.orderAttributesDirection.some(function (oa) { return oa.attributeType === attrType && oa.isDescending; })
-            }); })
-        };
-        p.fetchEventListEffect(request, filters);
+        p.fetchEventListEffect(filters);
+    }
+    function onReset() {
+        p.fetchEventListEffect();
     }
     function highlightText(text) {
         var responseSearchText = eventsResponse.titleSearch;
@@ -509,19 +301,31 @@ function EventListScreen(p) {
         }
         return _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["defaultCategoryImg"];
     }
+    var mapPoints = eventsResponse.events.filter(function (ee) { return ee.geometry[0].type == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetGeometryType"].Point; }).map(function (ee) {
+        var geometryPoint = ee.geometry[0];
+        return {
+            lat: geometryPoint === null || geometryPoint === void 0 ? void 0 : geometryPoint.coordinates[1],
+            lng: geometryPoint === null || geometryPoint === void 0 ? void 0 : geometryPoint.coordinates[0],
+            id: ee.id,
+            isClosed: ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Closed,
+            categoryClass: getCategoryIconImgClass(ee.category.id),
+            text: ee.title,
+            categoryId: ee.category.id
+        };
+    });
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["container"] },
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_LeftPanel_LeftPanel__WEBPACK_IMPORTED_MODULE_9__["default"], null,
             " ",
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_custom_scrollbars__WEBPACK_IMPORTED_MODULE_16___default.a, null,
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_SearchInput_SearchInput__WEBPACK_IMPORTED_MODULE_14__["SearchInput"], { onChange: setSearch, defaultValue: filters.titleSearch, placeholder: "Search by name" }),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_SearchInput_SearchInput__WEBPACK_IMPORTED_MODULE_14__["SearchInput"], { onChange: manageTitleSearch, defaultValue: filters.titleSearch, placeholder: "Search by name" }),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] + ' ' + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["daysPriorLabel"] }, "Days prior:"),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Input_Input__WEBPACK_IMPORTED_MODULE_15__["default"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["daysPriorInput"], type: "number", name: "days-prior", min: 1, max: maxDaysPriorFilterValue, onChange: manageDaysPrior, value: filters.daysPrior }),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Input_Input__WEBPACK_IMPORTED_MODULE_15__["default"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["daysPriorInput"], type: "number", name: "days-prior", min: 1, max: maxDaysPrior, onChange: manageDaysPrior, value: filters.daysPrior }),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by status:"),
                 Object.values(_shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"]).map(function (c) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeTextTwoColumns"], key: c, title: c },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { checked: filters.statuses.includes(c), label: c, onChange: function () { return manageFiltersStatuses(c); } }))); }),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by category:"),
                 p.allCategories.map(function (c) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeText"], key: c.id, title: c.title },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { checked: filters.categories.includes(c), label: c.title, onChange: function () { return manageFiltersCategories(c); } }))); }),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { checked: filters.categories.includes(c.id), label: c.title, onChange: function () { return manageFiltersCategories(c.id); } }))); }),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["boldText"] }, "Filter by source:"),
                 p.allSources.map(function (s) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["searchTypeTextTwoColumns"], key: s, title: sourceNameDictionary[s] },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { checked: filters.sources.includes(s), label: s, onChange: function () { return manageFiltersSource(s); } }))); }),
@@ -530,7 +334,8 @@ function EventListScreen(p) {
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: filters.order.indexOf(attributeType) == -1 ? _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["orderNumberNone"] : _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["orderNumber"] }, filters.order.indexOf(attributeType) + 1),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["orderAttr"], checked: filters.order.includes(attributeType), label: attributeType == _models_EventListScreen__WEBPACK_IMPORTED_MODULE_8__["EonetEventOrderAttributeType"].LastDate ? 'Last Date' : attributeType, onChange: function () { return manageOrderAttributes(attributeType); } }),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_11__["default"], { checked: filters.orderAttributesDirection.some(function (oa) { return oa.attributeType === attributeType && oa.isDescending; }), label: "Desc", onChange: function () { return manageOrderAttributesDirection(attributeType); } }))); }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], { isPrimary: true, onClick: onRequest }, "Request Natural Events")),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], { isPrimary: true, onClick: onRequest }, "Request Natural Events"),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], { onClick: onReset }, "Reset")),
             " "),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["screen"] },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["header"] },
@@ -538,35 +343,38 @@ function EventListScreen(p) {
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["eventViewerText"] + " " + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["headerText"] }, "Earth Observatory Natural Events Tracker"),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["rectangle"] }),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["headerText"] }, "Events List"))),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_List_List__WEBPACK_IMPORTED_MODULE_12__["List"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["list"] }, eventsResponse.events.map(function (ee) {
-                var _a;
-                return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { key: ee.id, "data-event-category": ee.categories[0].id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItem"] },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], { to: "/event/" + ee.id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItemLink"] },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryBlock"] },
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: getCategoryIconImgClass(ee.categories[0].id) + (ee.closed ? ' ' + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryClosed"] : '') }),
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryName"] }, ee.categories[0].title)),
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["eventDetails"] },
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["id"] }, ee.id),
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["name"] }, eventsResponse.titleSearch ? highlightText(ee.title) : ee.title),
-                            ee.description ? react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItemDetailsDescription"] }, ee.description) : '',
-                            ((_a = ee.geometry[0]) !== null && _a !== void 0 ? _a : {}).type == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetGeometryType"].Point ?
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationBlock"] },
-                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationImg"] }),
-                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationNum"] }, ee.geometry[0].coordinates.join(', '))) : '',
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceBlock"] },
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Sources:"),
-                                ee.sources.map(function (s) {
-                                    return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { key: s.id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"], title: sourceNameDictionary[s.id] },
-                                        s.id,
-                                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["goOutLink"], title: s.url }));
-                                })),
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceBlock"] },
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Last date:"),
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"] }, new Date(Date.parse(ee.lastGeometryDate || '')).toLocaleDateString())),
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusBlock"] },
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Status:"),
-                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusOpen"] : _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusClosed"] }, ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? 'Open' : "Closed at " + new Date(Date.parse(ee.closed || '')).toLocaleDateString()))))));
-            })))));
+            p.match.params.mode == EventScreenListMode.Map
+                ? react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["list"] }, mapPoints && mapPoints.length > 0 ?
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Map_Map__WEBPACK_IMPORTED_MODULE_17__["default"], { zoom: 1, points: mapPoints }) : '')
+                : react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_List_List__WEBPACK_IMPORTED_MODULE_12__["List"], { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["list"] }, eventsResponse.events.map(function (ee) {
+                    var _a;
+                    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { key: ee.id, "data-event-category": ee.category.id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItem"] },
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], { to: "/event/" + ee.id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItemLink"] },
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryBlock"] },
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: getCategoryIconImgClass(ee.category.id) + (ee.closedDate ? ' ' + _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryClosed"] : '') }),
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryName"] }, ee.category.title)),
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["eventDetails"] },
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["id"] }, ee.id),
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["name"] }, eventsResponse.titleSearch ? highlightText(ee.title) : ee.title),
+                                ee.description ? react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["listItemDetailsDescription"] }, ee.description) : '',
+                                ((_a = ee.geometry[0]) !== null && _a !== void 0 ? _a : {}).type == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetGeometryType"].Point ?
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationBlock"] },
+                                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationImg"] }),
+                                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["locationNum"] }, ee.geometry[0].coordinates.join(', '))) : '',
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceBlock"] },
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Sources:"),
+                                    ee.sources.map(function (s) {
+                                        return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { key: s.id, className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"], title: sourceNameDictionary[s.id] },
+                                            s.id,
+                                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["goOutLink"], title: s.url }));
+                                    })),
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceBlock"] },
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Last date:"),
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"] }, new Date(Date.parse(ee.lastDate)).toLocaleDateString())),
+                                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusBlock"] },
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Status:"),
+                                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusOpen"] : _EventListScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusClosed"] }, ee.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Closed && ee.closedDate ? "Closed at " + new Date(Date.parse(ee.closedDate)).toLocaleDateString() : 'Open'))))));
+                })))));
 }
 
 
@@ -576,15 +384,20 @@ function EventListScreen(p) {
 /*!*******************************************************!*\
   !*** ./ClientApp/EventListScreen/eventListActions.ts ***!
   \*******************************************************/
-/*! exports provided: requestEventList, receiveEventList, fetchEventListEffect */
+/*! exports provided: cleanFilters, requestEventList, receiveEventList, updateFilters, updateFiltersEffect, fetchEventListEffect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanFilters", function() { return cleanFilters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestEventList", function() { return requestEventList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveEventList", function() { return receiveEventList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFilters", function() { return updateFilters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFiltersEffect", function() { return updateFiltersEffect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEventListEffect", function() { return fetchEventListEffect; });
-/* harmony import */ var _eventListApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventListApi */ "./ClientApp/EventListScreen/eventListApi.ts");
+/* harmony import */ var _models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/EventListScreen */ "./ClientApp/EventListScreen/models/EventListScreen.ts");
+/* harmony import */ var _eventListApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventListApi */ "./ClientApp/EventListScreen/eventListApi.ts");
+/* harmony import */ var _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/models/EonetEvent */ "./ClientApp/shared/models/EonetEvent.ts");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -622,6 +435,21 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
     }
 };
 
+
+
+var globalState = window.initialState.global;
+var cleanFilters = function () { return ({
+    sources: globalState.sources,
+    categories: globalState.categories.map(function (c) { return c.id; }),
+    statuses: Object.values(_shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_2__["EonetEventStatus"]),
+    daysPrior: globalState.maxDaysPrior,
+    order: [_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"].LastDate],
+    orderAttributesDirection: Object.values(_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"]).map(function (t) { return ({
+        attributeType: t,
+        isDescending: t == _models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"].LastDate ? true : false
+    }); }),
+    titleSearch: ''
+}); };
 function requestEventList(filters) {
     return {
         type: 'REQUEST_EVENT_LIST',
@@ -634,20 +462,47 @@ function receiveEventList(response) {
         response: response
     };
 }
-var fetchEventListEffect = function (request, filters) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
-    var response;
+function updateFilters(filters) {
+    return {
+        type: 'UPDATE_FILTERS',
+        filters: filters
+    };
+}
+var updateFiltersEffect = function (filters) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                dispatch(requestEventList(filters));
-                return [4 /*yield*/, _eventListApi__WEBPACK_IMPORTED_MODULE_0__["EventListApi"].GetEvents(request)];
-            case 1:
-                response = _a.sent();
-                dispatch(receiveEventList(response));
-                return [2 /*return*/];
-        }
+        dispatch(updateFilters(filters));
+        return [2 /*return*/];
     });
 }); }; };
+var fetchEventListEffect = function (filters) {
+    if (filters === void 0) { filters = null; }
+    return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
+        var newFilters, request, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    newFilters = filters || cleanFilters();
+                    request = {
+                        days: newFilters.daysPrior,
+                        sources: newFilters.sources,
+                        status: newFilters.statuses.length == 1 ? newFilters.statuses[0] : null,
+                        categories: newFilters.categories,
+                        titleSearch: newFilters.titleSearch,
+                        ordering: newFilters.order.map(function (attrType) { return ({
+                            attributeType: attrType,
+                            isDescending: newFilters.orderAttributesDirection.some(function (oa) { return oa.attributeType === attrType && oa.isDescending; })
+                        }); })
+                    };
+                    dispatch(requestEventList(newFilters));
+                    return [4 /*yield*/, _eventListApi__WEBPACK_IMPORTED_MODULE_1__["EventListApi"].GetEvents(request)];
+                case 1:
+                    response = _a.sent();
+                    dispatch(receiveEventList(response));
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+};
 
 
 /***/ }),
@@ -689,8 +544,7 @@ var EventListApi = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/EventListScreen */ "./ClientApp/EventListScreen/models/EventListScreen.ts");
-/* harmony import */ var _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/models/EonetEvent */ "./ClientApp/shared/models/EonetEvent.ts");
+/* harmony import */ var _eventListActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventListActions */ "./ClientApp/EventListScreen/eventListActions.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -703,28 +557,18 @@ var __assign = (undefined && undefined.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 
-
-var globalState = window.initialState.global;
+var localStorageFiltersKey = 'event-list-filters';
+var savedFiltersString = window.localStorage.getItem(localStorageFiltersKey);
 var initialState = {
     eventsResponse: {
         title: 'Initial',
         description: 'Natural events from EONET.',
         link: 'https://eonet.sci.gsfc.nasa.gov/api/v3/events',
         titleSearch: '',
-        events: []
+        events: [],
+        totalCount: 0
     },
-    filters: {
-        sources: globalState.sources,
-        categories: globalState.categories,
-        statuses: Object.values(_shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_1__["EonetEventStatus"]),
-        daysPrior: 180,
-        order: [_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"].LastDate],
-        orderAttributesDirection: Object.values(_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"]).map(function (t) { return ({
-            attributeType: t,
-            isDescending: t == _models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"].LastDate ? true : false
-        }); }),
-        titleSearch: ''
-    }
+    filters: savedFiltersString ? JSON.parse(savedFiltersString) : Object(_eventListActions__WEBPACK_IMPORTED_MODULE_0__["cleanFilters"])()
 };
 var reducer = function (state, action) {
     if (state === void 0) { state = initialState; }
@@ -733,6 +577,10 @@ var reducer = function (state, action) {
             return __assign(__assign({}, state), { eventsResponse: action.response });
         }
         case 'REQUEST_EVENT_LIST': {
+            window.localStorage.setItem(localStorageFiltersKey, JSON.stringify(action.filters));
+            return __assign(__assign({}, state), { filters: action.filters });
+        }
+        case 'UPDATE_FILTERS': {
             return __assign(__assign({}, state), { filters: action.filters });
         }
     }
@@ -879,8 +727,8 @@ var EventScreen = function (p) {
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["container"] },
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["infoContainer"] },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryBlock"] },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: getCategoryIconImgClass(p.event.categories[0].id) + (p.event.closed ? ' ' + _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryClosed"] : '') }),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryName"] }, p.event.categories[0].title)),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: getCategoryIconImgClass(p.event.category.id) + (p.event.closedDate ? ' ' + _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryClosed"] : '') }),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["categoryName"] }, p.event.category.title)),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["eventDetails"] },
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["id"] }, p.event.id),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["name"] }, p.event.title),
@@ -898,19 +746,19 @@ var EventScreen = function (p) {
                     })),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceBlock"] },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Last date:"),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"] }, new Date(Date.parse(p.event.lastGeometryDate || '')).toLocaleDateString())),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceItem"] }, new Date(Date.parse(p.event.lastDate)).toLocaleDateString())),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusBlock"] },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["sourceText"] }, "Status:"),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: p.event.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusOpen"] : _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusClosed"] }, p.event.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? 'Open' : "Closed at " + new Date(Date.parse(p.event.closed || '')).toLocaleDateString())))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: p.event.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Open ? _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusOpen"] : _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["statusClosed"] }, p.event.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Closed && p.event.closedDate ? "Closed at " + new Date(Date.parse(p.event.closedDate)).toLocaleDateString() : 'Open')))),
         (lat && lng && p.event.title != 'Loading...' && p.event.title != 'Not Found' ? (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _EventScreen_module_less__WEBPACK_IMPORTED_MODULE_6__["mapContainer"] },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_shared_components_Map_Map__WEBPACK_IMPORTED_MODULE_8__["default"], { zoom: 5, points: [{
                         id: p.event.id,
                         isClosed: p.event.status == _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_7__["EonetEventStatus"].Closed,
                         lat: lat,
                         lng: lng,
-                        categoryClass: getCategoryIconImgClass(p.event.categories[0].id),
+                        categoryClass: getCategoryIconImgClass(p.event.category.id),
                         text: p.event.title,
-                        categoryId: p.event.categories[0].id
+                        categoryId: p.event.category.id
                     }] }))) : '')));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(EventScreen)));
@@ -1040,24 +888,24 @@ var initialState = {
     title: 'Loading...',
     description: null,
     link: 'https://eonet.sci.gsfc.nasa.gov/',
-    closed: null,
-    categories: [{ id: 'Category Id', title: 'Loading...' }],
+    closedDate: null,
+    category: { id: 'Category Id', title: 'Loading...' },
     sources: [{ id: 'SRC', url: 'https://eonet.sci.gsfc.nasa.gov/' }],
     geometry: [{ date: '2020-01-01', type: _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_0__["EonetGeometryType"].Point, coordinates: [0, 0] }],
     status: _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_0__["EonetEventStatus"].Open,
-    lastGeometryDate: 'Unknown'
+    lastDate: '2000-01-01'
 };
 var notFoundState = {
     id: 'ID',
     title: 'Not Found',
     description: null,
     link: 'https://eonet.sci.gsfc.nasa.gov/',
-    closed: null,
-    categories: [{ id: 'Category Id', title: 'Not Found' }],
+    closedDate: null,
+    category: { id: 'Category Id', title: 'Not Found' },
     sources: [{ id: 'SRC', url: 'https://eonet.sci.gsfc.nasa.gov/' }],
     geometry: [{ date: '2020-01-01', type: _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_0__["EonetGeometryType"].Point, coordinates: [0, 0] }],
     status: _shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_0__["EonetEventStatus"].Open,
-    lastGeometryDate: 'Unknown'
+    lastDate: '2000-01-01'
 };
 var reducer = function (state, action) {
     if (state === void 0) { state = initialState; }
@@ -1505,8 +1353,8 @@ var Menu = /** @class */ (function (_super) {
     Menu.prototype.render = function () {
         return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { key: "menu", className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["container"] },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("img", { src: "https://eonet.sci.gsfc.nasa.gov/img/nasa-logo.svg", width: "32", height: "32", alt: "Natural Events Viewer", className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["logo"] }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_MenuItem__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], { className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["icon"], title: "Detailed Events List", containerElement: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], { to: "/events", activeClassName: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["isActive"], children: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Icons_ListIcon__WEBPACK_IMPORTED_MODULE_4__["default"], null) }) }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_MenuItem__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], { className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["icon"], title: "Events on Map", containerElement: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], { to: "/eventsMap", activeClassName: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["isActive"], children: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Icons_MapIcon__WEBPACK_IMPORTED_MODULE_5__["default"], null) }) })));
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_MenuItem__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], { className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["icon"], title: "Detailed Events List", containerElement: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], { to: "/events/list", activeClassName: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["isActive"], children: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Icons_ListIcon__WEBPACK_IMPORTED_MODULE_4__["default"], null) }) }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_MenuItem__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], { className: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["icon"], title: "Events on Map", containerElement: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], { to: "/events/map", activeClassName: _Menu_module_less__WEBPACK_IMPORTED_MODULE_3__["isActive"], children: react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Icons_MapIcon__WEBPACK_IMPORTED_MODULE_5__["default"], null) }) })));
     };
     return Menu;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]));
@@ -1627,9 +1475,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Layout_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Layout/components/Layout/Layout */ "./ClientApp/Layout/components/Layout/Layout.tsx");
 /* harmony import */ var _EventListScreen_components_EventListScreen_EventListScreen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EventListScreen/components/EventListScreen/EventListScreen */ "./ClientApp/EventListScreen/components/EventListScreen/EventListScreen.tsx");
-/* harmony import */ var _EventListScreen_components_EventListScreen_EventListMapScreen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EventListScreen/components/EventListScreen/EventListMapScreen */ "./ClientApp/EventListScreen/components/EventListScreen/EventListMapScreen.tsx");
-/* harmony import */ var _EventScreen_components_EventScreen_EventScreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EventScreen/components/EventScreen/EventScreen */ "./ClientApp/EventScreen/components/EventScreen/EventScreen.tsx");
-
+/* harmony import */ var _EventScreen_components_EventScreen_EventScreen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EventScreen/components/EventScreen/EventScreen */ "./ClientApp/EventScreen/components/EventScreen/EventScreen.tsx");
 
 
 
@@ -1637,10 +1483,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Layout_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"], null,
     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null,
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], { exact: true, from: "/", to: "events" }),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/events", component: _EventListScreen_components_EventListScreen_EventListScreen__WEBPACK_IMPORTED_MODULE_3__["default"] }),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/eventsMap", component: _EventListScreen_components_EventListScreen_EventListMapScreen__WEBPACK_IMPORTED_MODULE_4__["default"] }),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/event/:eventId", component: _EventScreen_components_EventScreen_EventScreen__WEBPACK_IMPORTED_MODULE_5__["default"] }))));
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], { exact: true, from: "/", to: "events/map" }),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/events/:mode", component: _EventListScreen_components_EventListScreen_EventListScreen__WEBPACK_IMPORTED_MODULE_3__["default"] }),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/event/:eventId", component: _EventScreen_components_EventScreen_EventScreen__WEBPACK_IMPORTED_MODULE_4__["default"] }))));
 
 
 /***/ }),
@@ -2550,7 +2395,7 @@ var __assign = (undefined && undefined.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 
-var initialState = { sources: [], categories: [] };
+var initialState = { sources: [], categories: [], maxDaysPrior: 180 };
 var reducer = function (state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
@@ -5626,7 +5471,7 @@ exports.locals = {
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".Button-module__container {\n  border: 1px solid #52bad5;\n  height: 32px;\n  min-width: 62px;\n  border-radius: 4px;\n  color: #52bad5;\n  background-color: #fff;\n  margin-right: 8px;\n  cursor: pointer;\n  font-weight: normal;\n}\n.Button-module__container:disabled {\n  opacity: 0.5;\n}\n.Button-module__primary {\n  color: #fff;\n  background-color: #52bad5;\n  margin-bottom: 30px;\n  margin-left: 6px;\n  margin-top: 8px;\n}\n.Button-module__disabled {\n  pointer-events: none;\n}\n.Button-module__disabled.Button-module__primary {\n  background-color: #addfef;\n  border: none;\n}\n.Button-module__link {\n  background: none;\n  border: none;\n  padding: 0;\n  cursor: pointer;\n  color: #666666;\n  font-weight: normal;\n}\n", ""]);
+exports.push([module.i, ".Button-module__container {\n  border: 1px solid #52bad5;\n  height: 32px;\n  min-width: 62px;\n  border-radius: 4px;\n  color: #52bad5;\n  background-color: #fff;\n  margin-right: 8px;\n  cursor: pointer;\n  font-weight: normal;\n  margin-bottom: 30px;\n  margin-left: 6px;\n}\n.Button-module__container:disabled {\n  opacity: 0.5;\n}\n.Button-module__primary {\n  color: #fff;\n  background-color: #52bad5;\n  margin-bottom: 12px;\n  margin-top: 8px;\n}\n.Button-module__disabled {\n  pointer-events: none;\n}\n.Button-module__disabled.Button-module__primary {\n  background-color: #addfef;\n  border: none;\n}\n.Button-module__link {\n  background: none;\n  border: none;\n  padding: 0;\n  cursor: pointer;\n  color: #666666;\n  font-weight: normal;\n}\n", ""]);
 
 // Exports
 exports.locals = {

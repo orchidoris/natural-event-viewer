@@ -6,5 +6,6 @@ namespace NaturalEventsViewer.Web.Models
     {
         public string[] Sources { get; set; }
         public EonetCategory[] Categories { get; set; }
+        public int MaxDaysPrior { get; set; }
     }
 }

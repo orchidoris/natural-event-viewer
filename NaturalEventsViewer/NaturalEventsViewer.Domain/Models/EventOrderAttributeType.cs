@@ -1,12 +1,12 @@
 ﻿namespace NaturalEventsViewer.Domain.Models
 {
-    public enum EonetEventOrderAttributeType
+    public enum EventOrderAttributeType
     {
         Id,
         Title,
         Category,
         Source,
-        LastGeographyDate,
+        LastDate,
         Status,
         ClosedDate
     }

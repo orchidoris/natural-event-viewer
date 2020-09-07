@@ -3,10 +3,10 @@ export type EonetEvent = {
     title: string;
     description: string | null;
     link: string;
-    closed: string | null; // TODO: Use Date type instead
-    lastGeometryDate: string; // TODO: Use Date type instead
+    closedDate: string | null; // TODO: Use Date type instead
+    lastDate: string; // TODO: Use Date type instead
     status: EonetEventStatus;
-    categories: EonetCategory[];
+    category: EonetCategory;
     sources: EonetSource[];
     geometry: EonetGeometry[];
 }

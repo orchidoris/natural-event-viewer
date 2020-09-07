@@ -6,9 +6,9 @@ namespace NaturalEventsViewer.Domain
 {
     public interface IEonetRepository
     {
-        Task<EonetEventsResponse> GetEvents(EonetEventsCustomRequest request);
+        Task<EventsResponse> GetEvents(EventsRequest request);
 
-        Task<EonetEvent> GetSingeEvent(string id);
+        Task<Event> GetSingeEvent(string id);
 
         Task<EonetCategory[]> GetCurrentlyAvailableCategories();
 

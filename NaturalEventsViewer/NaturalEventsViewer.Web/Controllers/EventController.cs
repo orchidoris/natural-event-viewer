@@ -21,14 +21,14 @@ namespace NaturalEventsViewer.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<EonetEventsResponse> GetEventList([FromBody]EonetEventsCustomRequest request)
+        public async Task<EventsResponse> GetEventList([FromBody]EventsRequest request)
         {
             var res = await _eonetRepository.GetEvents(request);
             return res;
         }
 
         [HttpGet]
-        public async Task<EonetEvent> GetEvent(string id)
+        public async Task<Event> GetEvent(string id)
         {
             var res = await _eonetRepository.GetSingeEvent(id);
             return res;

@@ -1,10 +1,9 @@
 import { Reducer } from 'redux';
-import { EventListActions } from './eventListActions';
-import { EventListScreenStore, EonetEventOrderAttributeType } from './models/EventListScreen';
-import { EonetEventStatus } from '../shared/models/EonetEvent';
-import { GlobalState } from '../shared/models/GlobalState';
+import { EventListActions, cleanFilters } from './eventListActions';
+import { EventListScreenStore } from './models/EventListScreen';
 
-const globalState = ((window as any).initialState.global as GlobalState);
+const localStorageFiltersKey = 'event-list-filters';
+const savedFiltersString = window.localStorage.getItem(localStorageFiltersKey);
 
 const initialState: EventListScreenStore = {
     eventsResponse: {
@@ -12,19 +11,10 @@ const initialState: EventListScreenStore = {
         description: 'Natural events from EONET.',
         link: 'https://eonet.sci.gsfc.nasa.gov/api/v3/events',
         titleSearch: '',
-        events: []
+        events: [],
+        totalCount: 0
     },
-    filters: {
-        sources: globalState.sources,
-        categories: globalState.categories,
-        statuses: Object.values(EonetEventStatus),
-        daysPrior: 180,
-        order: [ EonetEventOrderAttributeType.LastDate ],
-        orderAttributesDirection: Object.values(EonetEventOrderAttributeType).map(t => ({
-            attributeType: t,
-            isDescending: t == EonetEventOrderAttributeType.LastDate ? true : false })),
-        titleSearch: ''
-    }
+    filters: savedFiltersString ? JSON.parse(savedFiltersString) : cleanFilters()
 };
 
 const reducer: Reducer<EventListScreenStore, EventListActions> = (state: EventListScreenStore = initialState, action: EventListActions) => {
@@ -36,6 +26,14 @@ const reducer: Reducer<EventListScreenStore, EventListActions> = (state: EventLi
             };
         }
         case 'REQUEST_EVENT_LIST': {
+            window.localStorage.setItem(localStorageFiltersKey, JSON.stringify(action.filters));
+
+            return {
+                ...state,
+                filters: action.filters
+            };
+        }
+        case 'UPDATE_FILTERS': {
             return {
                 ...state,
                 filters: action.filters

@@ -13,12 +13,12 @@ export class Menu extends React.Component<{}> {
                 <MenuItem
                     className={styles.icon}
                     title="Detailed Events List"
-                    containerElement={<NavLink to="/events" activeClassName={styles.isActive} children={<ListIcon />} />}
+                    containerElement={<NavLink to="/events/list" activeClassName={styles.isActive} children={<ListIcon />} />}
                 />
                 <MenuItem
                     className={styles.icon}
                     title="Events on Map"
-                    containerElement={<NavLink to="/eventsMap" activeClassName={styles.isActive} children={<MapIcon />} />}
+                    containerElement={<NavLink to="/events/map" activeClassName={styles.isActive} children={<MapIcon />} />}
                 />
             </div>
         );

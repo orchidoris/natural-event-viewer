@@ -7,13 +7,13 @@ export type EonetEventsResponse = {
     link: string;
     events: EonetEvent[];
     titleSearch: string;
+    totalCount: number;
 }
 
 export type EonetEventsRequest = {
-    limit?: number;
     days?: number;
-    sources?: string[];
     status?: EonetEventStatus | null;
+    sources?: string[];
     categories?: string[];
     titleSearch?: string;
     ordering?: EonetEventOrderAttribute[];
@@ -22,7 +22,7 @@ export type EonetEventsRequest = {
 export type EonetFilters = {
     daysPrior: number;
     sources: string[],
-    categories: EonetCategory[],
+    categories: string[],
     statuses: EonetEventStatus[],
     order: EonetEventOrderAttributeType[],
     orderAttributesDirection: EonetEventOrderAttribute[],

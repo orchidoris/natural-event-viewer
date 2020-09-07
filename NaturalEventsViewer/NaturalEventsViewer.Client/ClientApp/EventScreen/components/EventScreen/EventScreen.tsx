@@ -71,8 +71,8 @@ export const EventScreen: FC<Props> = (p) => {
         <div className={styles.container}>
             <div className={styles.infoContainer}>
                 <div className={styles.categoryBlock}>
-                    <div className={getCategoryIconImgClass(p.event.categories[0].id) + (p.event.closed ? ' ' + styles.categoryClosed : '')}/>
-                    <div className={styles.categoryName}>{p.event.categories[0].title}</div>
+                    <div className={getCategoryIconImgClass(p.event.category.id) + (p.event.closedDate ? ' ' + styles.categoryClosed : '')}/>
+                    <div className={styles.categoryName}>{p.event.category.title}</div>
                 </div>
                 <div className={styles.eventDetails}>
                     <div className={styles.id}>{p.event.id}</div>
@@ -90,12 +90,12 @@ export const EventScreen: FC<Props> = (p) => {
                     </div>
                     <div className={styles.sourceBlock}>
                         <span className={styles.sourceText}>Last date:</span>
-                        <span className={styles.sourceItem}>{new Date(Date.parse(p.event.lastGeometryDate || '')).toLocaleDateString()}</span>
+                        <span className={styles.sourceItem}>{new Date(Date.parse(p.event.lastDate)).toLocaleDateString()}</span>
                     </div>
                     <div className={styles.statusBlock}>
                         <span className={styles.sourceText}>Status:</span>
                         <span className={p.event.status == EonetEventStatus.Open ? styles.statusOpen : styles.statusClosed}>
-                            {p.event.status == EonetEventStatus.Open ? 'Open' : `Closed at ${new Date(Date.parse(p.event.closed || '')).toLocaleDateString()}`}
+                            {p.event.status == EonetEventStatus.Closed && p.event.closedDate ? `Closed at ${new Date(Date.parse(p.event.closedDate)).toLocaleDateString()}` : 'Open'}
                         </span>
                     </div>
                 </div>
@@ -107,9 +107,9 @@ export const EventScreen: FC<Props> = (p) => {
                         isClosed: p.event.status == EonetEventStatus.Closed,
                         lat: lat,
                         lng: lng,
-                        categoryClass: getCategoryIconImgClass(p.event.categories[0].id),
+                        categoryClass: getCategoryIconImgClass(p.event.category.id),
                         text: p.event.title,
-                        categoryId: p.event.categories[0].id
+                        categoryId: p.event.category.id
                     }]} />
                 </div> ) : '')}
         </div>

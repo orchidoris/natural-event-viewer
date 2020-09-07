@@ -5,6 +5,6 @@ namespace Eonet.Core
 {
     public interface IEonetApiClient
     {
-        Task<EonetEventsResponse> GetEventsAsync(EonetEventsApiRequest request = null);
+        Task<EonetEventsResponse> GetEventsAsync(EonetEventsRequest request = null);
     }
 }

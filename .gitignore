@@ -1,5 +1,10 @@
+*.user
 bin/
 obj/
 packages/
 node_modules/
-NaturalEventsViewer.Client/dist/
+.vs/
+/NaturalEventsViewer/NaturalEventsViewer.Client/dist/
+
+# We include the following one for the ease of initial start
+# /NaturalEventsViewer/NaturalEventsViewer.Web/dist/

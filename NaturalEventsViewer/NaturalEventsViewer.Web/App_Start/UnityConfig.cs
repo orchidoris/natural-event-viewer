@@ -1,8 +1,13 @@
 using Eonet.Core;
+using Eonet.Core.Models;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using NaturalEventsViewer.Domain;
+using NaturalEventsViewer.Web.Controllers;
 using System;
-
 using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 
 namespace NaturalEventsViewer.Web
 {
@@ -38,9 +43,25 @@ namespace NaturalEventsViewer.Web
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            int maxEonetDaysPrior = 180;
+
+            container.RegisterType<IOptions<MemoryCacheOptions>, MemoryCacheOptions>();
+            container.RegisterType<IMemoryCache, MemoryCache>(new ContainerControlledLifetimeManager()); // singleton
+            container.RegisterFactory<MemoryCacheEntryOptions>(c => new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromMinutes(10), // TODO: Get from app.config
+                AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(60) // TODO: Get from app.config
+            });
+
+            container.RegisterType<IEonetMemoryCache<EonetEventsResponse>, EonetMemoryCache<EonetEventsResponse>>();
             container.RegisterType<IEonetHttpClientFactory, EonetHttpClientFactory>();
             container.RegisterType<IEonetApiClient, EonetApiClient>();
-            container.RegisterType<IEonetRepository, EonetRepository>();
+            container.RegisterType<ICurrentTimeProvider, CurrentTimeProvider>();
+            container.RegisterType<IEonetRepository, EonetRepository>(new InjectionConstructor(
+                container.Resolve<IEonetApiClient>(),
+                container.Resolve<ICurrentTimeProvider>(),
+                maxEonetDaysPrior));
+            container.RegisterType<HomeController>(new InjectionConstructor(container.Resolve<IEonetRepository>(), maxEonetDaysPrior));
         }
     }
 }
