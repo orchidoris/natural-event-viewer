@@ -33,7 +33,7 @@ namespace NaturalEventsViewer.Web.Controllers
                 {
                     Sources = await _eonetRepository.GetCurrentlyAvailableSourceIds(),
                     Categories = await _eonetRepository.GetCurrentlyAvailableCategories(),
-                    MaxDaysPrior = 60 //_maxDaysPrior,
+                    MaxDaysPrior = _maxDaysPrior,
                 }
             };
 

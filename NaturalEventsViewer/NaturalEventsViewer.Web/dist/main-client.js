@@ -442,7 +442,7 @@ var cleanFilters = function () { return ({
     sources: globalState.sources,
     categories: globalState.categories.map(function (c) { return c.id; }),
     statuses: Object.values(_shared_models_EonetEvent__WEBPACK_IMPORTED_MODULE_2__["EonetEventStatus"]),
-    daysPrior: globalState.maxDaysPrior,
+    daysPrior: 60,
     order: [_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"].LastDate],
     orderAttributesDirection: Object.values(_models_EventListScreen__WEBPACK_IMPORTED_MODULE_0__["EonetEventOrderAttributeType"]).map(function (t) { return ({
         attributeType: t,

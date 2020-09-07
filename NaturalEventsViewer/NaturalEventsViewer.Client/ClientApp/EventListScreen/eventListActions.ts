@@ -9,7 +9,7 @@ export const cleanFilters = (): EonetFilters => ({
     sources: globalState.sources,
     categories: globalState.categories.map(c => c.id),
     statuses: Object.values(EonetEventStatus),
-    daysPrior: globalState.maxDaysPrior,
+    daysPrior: 60,
     order: [ EonetEventOrderAttributeType.LastDate ],
     orderAttributesDirection: Object.values(EonetEventOrderAttributeType).map(t => ({
         attributeType: t,
